@@ -1,50 +1,20 @@
-require(gdata)
-## install support for xlsx files
-installXLSXsupport()
-excelFile <- ("/home/imad/Desktop/MARIA BLANCA/WorkingWithData/studentAnswers.xlsx")
-## note that the perl scripts that gdata uses do not cope well will tilde expansion
-## on *nix machines. So use the full path. 
-numSheets <- sheetCount(excelFile, verbose=TRUE)
-install.packages("readxl")
-library(readxl)
-readxl() 
-devtools::install_github("hadley/readxl")
-for ( i in 1:numSheets) {
-  mySheet <- read.xls(excelFile, sheet=i)
-  write.csv(mySheet, file=paste(i, "csv", sep="."), row.names=FALSE)
-  # Sys.setlocale("LC_ALL", "C")
-  # x <- read.csv(url, header=FALSE, stringsAsFactors=FALSE, fileEncoding="latin1")
-}
-print(mySheet) 
-install.packages("gdata")
-library(gdata)
-gdata()
-excelFile
-install.packages("rio")
-convert("/home/imad/Desktop/MARIA BLANCA/WorkingWithData/studentAnswers.xlsx", "/home/imad/Desktop/MARIA BLANCA/WorkingWithData/studentAnswers.csv")
-
-library("rio")
-xls <- dir(pattern = "xlsx")
-created <- mapply(convert, xls, gsub("xlsx", "csv", xls))
-unlink(xls)
-
-
-# Create a vector of Excel files to read
-files.to.read = list.files(pattern="xlsx")
-
-
-# Read each file and write it to csv
-lapply(files.to.read, function(f) {
-  df = read.xlsx(f, sheet=1)
-  write.csv(df, gsub("/home/imad/Desktop/MARIA BLANCA/WorkingWithData/studentAnswers.xlsx", "csv", f), row.names=FALSE)
-})
-
-install.packages("readxl")
-install.packages("xlsx")
-install.packages("rio")
-xls <- dir(pattern = "/home/imad/Desktop/MARIA BLANCA/WorkingWithData/studentAnswers.xlsx")
-created <- mapply(convert, xls, gsub("xlsx", "csv", xls))
-unlink(xls) # delete xlsx files
+# Read CSV files
+library(dplyr)
+library(readr)
+readdailyupdates <- read_csv(file ="/home/imad/R Projects/coronaDZ/data/CasesDailyUpdates.csv")
+readPerPRovince<- read_csv(file = "/home/imad/R Projects/coronaDZ/data/CasesPerProvince.csv")
+View(readdailyupdates)
+View(readPerPRovince)
+# Subset columns from files
+DailyUpdates <- subset(readdailyupdates, select = c(1:2))
+PerPRovince <- subset(readPerPRovince, select = c(1:3))
+View(DailyUpdates)
+View(PerPRovince)
+#Count number of total cases, total deaths and total recovered
+library(COUNT)
+print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
+print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
+print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
 
 #############################################
 ############################################## GOOD CODE
