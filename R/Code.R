@@ -2,14 +2,14 @@
 library(dplyr)
 library(readr)
 readdailyupdates <- read_csv(file ="/home/imad/R Projects/coronaDZ/data/CasesDailyUpdates.csv")
-readPerPRovince<- read_csv(file = "/home/imad/R Projects/coronaDZ/data/CasesPerProvince.csv")
+readPerProvince<- read_csv(file = "/home/imad/R Projects/coronaDZ/data/CasesPerProvince.csv")
 View(readdailyupdates)
-View(readPerPRovince)
+View(readPerProvince)
 # Subset columns from files
 DailyUpdates <- subset(readdailyupdates, select = c(1:2))
-PerPRovince <- subset(readPerPRovince, select = c(1:3))
+PerProvince <- subset(readPerProvince, select = c(1:3))
 View(DailyUpdates)
-View(PerPRovince)
+View(PerProvince)
 #Count number of total cases, total deaths and total recovered
 library(COUNT)
 print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
