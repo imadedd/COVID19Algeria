@@ -15,7 +15,19 @@ library(COUNT)
 print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
 print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
 print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
+#Another way to calculate the number of recovered cases
+RecoveredCases2 <- print(sum(DailyUpdates$"Case nature" == "Recovered"))
+# Get infected cases per day per province
+print(ConfirmedAlger <- subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)))
+print(ConfirmedSetif <- subset(PerProvince, PerProvince$"Province"=="Setif", select = c(3)))
 
+#Barplot the cumulative number of confirmed cases
+barplot( ConfirmedAlger$`Confirmed cases`, main = "Cumulative number of confirmed cases per province", xlab = "Confirmed cases",col="Green",space = 0.5)
+
+barplot(ConfirmedSetif$`Confirmed cases`, main = "Cumulative number of confirmed cases per province", xlab = "Confirmed cases")
+
+#Get the last total of infected cases per province
+View(tail(subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)),1))
 #############################################
 ############################################## GOOD CODE
 #############################################""
