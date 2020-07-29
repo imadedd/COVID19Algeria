@@ -29,7 +29,11 @@ barplot(ConfirmedBlida$`Confirmed cases`, main = "Cumulative number of confirmed
 
 #Get the last total of infected cases per province
 View(tail(subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)),1))
-#############################################
+
+# DEath rate in Algeria, USA, Spain, Italy, Egypt and other counntries
+
+
+# #############################################
 ############################################## GOOD CODE
 #############################################""
 
