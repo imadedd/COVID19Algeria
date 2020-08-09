@@ -28,7 +28,11 @@ barplot(ConfirmedSetif$`Confirmed cases`, main = "Cumulative number of confirmed
 barplot(ConfirmedBlida$`Confirmed cases`, main = "Cumulative number of confirmed cases in Blida", xlab = "Confirmed cases",col="Blue",space = 0.5)
 
 #Get the last total of infected cases per province
-View(tail(subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)),1))
+print(tail(subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)),1))
+
+# Calculate new cases per province
+
+# Graph of new cases per provinces
 
 # DEath rate in Algeria, USA, Spain, Italy, Egypt and other counntries
 
