@@ -5,20 +5,24 @@ readdailyupdates <- read_csv(file ="/home/imad/R Projects/coronaDZ/data/CasesDai
 readPerProvince<- read_csv(file = "/home/imad/R Projects/coronaDZ/data/CasesPerProvince.csv")
 View(readdailyupdates)
 View(readPerProvince)
+
 # Subset columns from files
 DailyUpdates <- subset(readdailyupdates, select = c(1:2))
 PerProvince <- subset(readPerProvince, select = c(1:3))
 View(DailyUpdates)
 View(PerProvince)
+
 #Count number of total cases, total deaths and total recovered
 library(COUNT)
 print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
 print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
 print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
+
 #Another way to calculate the number of recovered cases
 RecoveredCases2 <- print(sum(DailyUpdates$"Case nature" == "Recovered"))
+
 # Get cumulative infected cases per day per province
-print(ConfirmedAlger <- subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)))
+View(ConfirmedAlger <- subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)))
 print(ConfirmedSetif <- subset(PerProvince, PerProvince$"Province"=="Setif", select = c(2:3)))
 print(ConfirmedBlida <- subset(PerProvince, PerProvince$"Province"=="Blida", select = c(2:3)))
 
