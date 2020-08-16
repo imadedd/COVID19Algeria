@@ -28,13 +28,14 @@ print(ConfirmedBlida <- subset(PerProvince, PerProvince$"Province"=="Blida", sel
 
 #Barplot the cumulative number of confirmed cases
 barplot( ConfirmedAlger$`Confirmed cases`, main = "Cumulative number of confirmed cases in Algiers", xlab = "Confirmed cases",col="Green",space = 0.5)
+library(hablar)
+ConvertedDates <- as.Date(ConfirmedAlger$Date,"%d %m %y")
 
-
-ggplot(data = ConfirmedAlger, aes(x = `Date`, y = `Confirmed cases`)) +
+ggplot(data = ConfirmedAlger, aes(x = `ConvertedDates`, y = `Confirmed cases`)) +
   geom_bar(stat = "identity", fill = "blue") +
   labs(title = "Cumulative confirmed cases in Algiers",
        subtitle = "2020",
-       x = "Date", y = "Cases")
+       x = "Date", y = "Cases") +  scale_x_date(labels = date_format("%Y-%m"),breaks = "1 month")
 
 
 
