@@ -18,6 +18,12 @@ print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
 print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
 print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
 
+# Get number of cases per day
+print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "15 July 2020")))
+print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "15 July 2020")))
+print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "15 July 2020")))
+
+
 #Another way to calculate the number of recovered cases
 RecoveredCases2 <- print(sum(DailyUpdates$"Case nature" == "Recovered"))
 
