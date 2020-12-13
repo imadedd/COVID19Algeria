@@ -32,7 +32,13 @@ View(ConfirmedAlger <- subset(PerProvince, PerProvince$"Province"=="Alger", sele
 print(ConfirmedSetif <- subset(PerProvince, PerProvince$"Province"=="Setif", select = c(2:3)))
 print(ConfirmedBlida <- subset(PerProvince, PerProvince$"Province"=="Blida", select = c(2:3)))
 
-#Barplot the cumulative number of confirmed cases
+# Barplot th enuber of cumulative cases
+
+# Barplot th enuber of cumulative deaths
+
+# Barplot th enuber of cumulative deaths
+
+#Barplot the cumulative number of confirmed cases per province
 barplot( ConfirmedAlger$`Confirmed cases`, main = "Cumulative number of confirmed cases in Algiers", xlab = "Confirmed cases",col="Green",space = 0.5)
 library(hablar)
 ConvertedDates <- as.Date(ConfirmedAlger$Date,"%d %m %y")
