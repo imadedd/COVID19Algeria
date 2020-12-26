@@ -1,6 +1,10 @@
 # Read CSV files
 library(dplyr)
 library(readr)
+
+# Libraries to plot by month
+library(ggplot2)
+library(scales)
 readdailyupdates <- read_csv(file ="/home/imad/R Projects/coronaDZ/data/CasesDailyUpdates.csv")
 readPerProvince<- read_csv(file = "/home/imad/R Projects/coronaDZ/data/CasesPerProvince.csv")
 View(readdailyupdates)
@@ -19,9 +23,9 @@ print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
 print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
 
 # Get number of cases per day
-print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "07 April 2020")))
-print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "07 April 2020")))
-print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "07 April 2020")))
+print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "20 March 2020")))
+print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "20 March 2020")))
+print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "20 March 2020")))
 
 
 #Another way to calculate the number of recovered cases
@@ -30,7 +34,7 @@ RecoveredCases2 <- print(sum(DailyUpdates$"Case nature" == "Recovered"))
 # Get cumulative infected cases per day per province
 View(ConfirmedAlger <- subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3)))
 print(ConfirmedSetif <- subset(PerProvince, PerProvince$"Province"=="Setif", select = c(2:3)))
-print(ConfirmedBlida <- subset(PerProvince, PerProvince$"Province"=="Blida", select = c(2:3)))
+print(ConfirmedBBA <- subset(PerProvince, PerProvince$"Province"=="Bordj Bou Arreridj", select = c(2:3)))
 
 # Barplot th enuber of cumulative cases
 
@@ -39,7 +43,7 @@ print(ConfirmedBlida <- subset(PerProvince, PerProvince$"Province"=="Blida", sel
 # Barplot th enuber of cumulative deaths
 
 #Barplot the cumulative number of confirmed cases per province
-barplot( ConfirmedAlger$`Confirmed cases`, main = "Cumulative number of confirmed cases in Algiers", xlab = "Confirmed cases",col="Green",space = 0.5)
+barplot( ConfirmedBBA$`Confirmed cases`, main = "Cumulative number of confirmed cases in BBA", xlab = "Confirmed cases",col="Green",space = 0.5)
 library(hablar)
 ConvertedDates <- as.Date(ConfirmedAlger$Date,"%d %m %y")
 
@@ -64,5 +68,8 @@ print(tail(subset(PerProvince, PerProvince$"Province"=="Alger", select = c(2:3))
 
 # DEath rate in Algeria, USA, Spain, Italy, Egypt and other counntries
 
+betterDates <- as.Date(ConfirmedBBA$Date,format = "%d %m %Y")
 
+ConfirmedBBA$Date <- as.Date(ConfirmedBBA$Date,"%d %m %y")
 
+View(betterDates)
