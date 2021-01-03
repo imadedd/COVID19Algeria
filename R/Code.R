@@ -4,7 +4,7 @@ library(readr)
 
 # Libraries to plot by month
 library(ggplot2)
-library(scales)
+
 readdailyupdates <- read_csv(file ="/home/imad/R Projects/coronaDZ/data/CasesDailyUpdates.csv")
 readPerProvince<- read_csv(file = "/home/imad/R Projects/coronaDZ/data/CasesPerProvince.csv")
 View(readdailyupdates)
@@ -16,19 +16,19 @@ PerProvince <- subset(readPerProvince, select = c(1:3))
 View(DailyUpdates)
 View(PerProvince)
 
-#Count number of total cases, total deaths and total recovered
+# Count number of total cases, total deaths and total recovered
 library(COUNT)
 print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
 print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
 print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
 
-# Get number of cases per day
-print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "20 March 2020")))
-print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "20 March 2020")))
-print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "20 March 2020")))
+  # Get number of cases per day
+print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "12 April 2020")))
+print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "11 April 2020")))
+print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "12 April 2020")))
 
 
-#Another way to calculate the number of recovered cases
+# Another way to calculate the number of recovered cases
 RecoveredCases2 <- print(sum(DailyUpdates$"Case nature" == "Recovered"))
 
 # Get cumulative infected cases per day per province
