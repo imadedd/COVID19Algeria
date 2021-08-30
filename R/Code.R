@@ -18,15 +18,33 @@ View(PerProvince)
 
 # Count number of total cases, total deaths and total recovered
 library(COUNT)
+print(sum(DailyUpdates$`Case nature`=="New"))
 print(NewCases <- length(which(DailyUpdates$"Case nature" == "New")))
 print(DeathCases <- length((which(DailyUpdates$"Case nature" == "Death"))))
 print(RecoveredCases <- length(which(DailyUpdates$"Case nature" == "Recovered")))
 
-  # Get number of cases per day
-print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "12 April 2020")))
-print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "11 April 2020")))
-print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "12 April 2020")))
+    # Get number of cases per day
+print(NewCases2 <- length(which(DailyUpdates$"Case nature" == "New" & DailyUpdates$"Case Date" == "28 May 2021")))
+print(DeaCases2 <- length(which(DailyUpdates$"Case nature" == "Death" & DailyUpdates$"Case Date" == "28 May 2021")))
+print(RecCases2 <- length(which(DailyUpdates$"Case nature" == "Recovered" & DailyUpdates$"Case Date" == "28 May 2021")))
 
+# Get overall number of cases per x day
+library(lubridate)
+library(dplyr)
+print(sum(DailyUpdates$`Case nature`=="New"))
+group_by(DailyUpdates, DailyUpdates$`Case Date`)    %>%sum(DailyUpdates$`Case nature`=="New")
+View(group_by(DailyUpdates, DailyUpdates$`Case Date`, sum(DailyUpdates$`Case nature`=="New")))
+
+options(max.print=10)
+print(DailyUpdates$"Case Date" <- dmy(DailyUpdates$"Case Date"))
+
+
+#View(DailyUpdates$"Case Date" <- as.Date(DailyUpdates$"Case Date", format ="%d %B %Y"))
+#DailyUpdates$`Case Date` <- as.Date(DailyUpdates$`Case Date`, format ="%d-%B-%Y")
+aggregate(DailyUpdates$`Case nature`, by=list(DailyUpdates$`Case Date`),length(which(DailyUpdates$"Case nature"=="New"))
+aggregate(DailyUpdates$"Case nature", by=list(DailyUpdates$"Case Date"), FUN=length(which(DailyUpdates$"Case nature"=="New"))
+
+aggregate(DailyUpdates$`Case nature`, by=list(DailyUpdates$`Case Date`), sum(DailyUpdates$"Case nature" == "Recovered"))
 
 # Another way to calculate the number of recovered cases
 RecoveredCases2 <- print(sum(DailyUpdates$"Case nature" == "Recovered"))
